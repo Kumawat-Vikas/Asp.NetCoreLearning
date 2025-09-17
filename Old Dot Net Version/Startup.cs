@@ -35,15 +35,16 @@ namespace Old_Dot_Net_Version
                 app.UseDeveloperExceptionPage();
             }
 
-            app.Run(async (context) =>
+            app.Use(async (context, next) =>
             {
-                await context.Response.WriteAsync("Hello from MW1");
+                await context.Response.WriteAsync("Hello from MW1!");
+                await next();
             });                                    
                                                    
                                                    
             app.Run(async (context) =>             
             {                                      
-                await context.Response.WriteAsync("Hello from MW2");
+                await context.Response.WriteAsync("Hello from MW2!");
             });
         }
     }
