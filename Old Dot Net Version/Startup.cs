@@ -35,15 +35,15 @@ namespace Old_Dot_Net_Version
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseRouting();
-
-            app.UseEndpoints(endpoints =>
+            app.Run(async (context) =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    //await context.Response.WriteAsync(Process.GetCurrentProcess().ProcessName);
-                    await context.Response.WriteAsync(_config["MyKey"]);
-                });
+                await context.Response.WriteAsync("Hello from MW1");
+            });                                    
+                                                   
+                                                   
+            app.Run(async (context) =>             
+            {                                      
+                await context.Response.WriteAsync("Hello from MW2");
             });
         }
     }
