@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -28,7 +29,7 @@ namespace Old_Dot_Net_Version
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
         {
             if (env.IsDevelopment())
             {
@@ -37,14 +38,24 @@ namespace Old_Dot_Net_Version
 
             app.Use(async (context, next) =>
             {
-                await context.Response.WriteAsync("Hello from MW1!");
+                logger.LogInformation("MW1: Incoming request");
                 await next();
+                logger.LogInformation("MW1: Outgoing response");
+            });
+
+            app.Use(async (context, next) =>
+            {
+                logger.LogInformation("MW2: Incoming request");
+                await next();
+                logger.LogInformation("MW2: Outgoing response");
+
             });                                    
                                                    
                                                    
             app.Run(async (context) =>             
-            {                                      
-                await context.Response.WriteAsync("Hello from MW2!");
+            {
+                await context.Response.WriteAsync("MW3: request handeled and response produced");
+                logger.LogInformation("MW3: request handeled and response produced");
             });
         }
     }
