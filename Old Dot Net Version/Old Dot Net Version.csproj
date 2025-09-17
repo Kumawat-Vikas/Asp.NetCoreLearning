@@ -3,6 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Old_Dot_Net_Version</RootNamespace>
+	<AspNetCoreHostingModel>OutofProgress</AspNetCoreHostingModel>
+	  
   </PropertyGroup>
 
 </Project>
