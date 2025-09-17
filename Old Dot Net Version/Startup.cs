@@ -35,7 +35,8 @@ namespace Old_Dot_Net_Version
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            //app.UseDefaultFiles();
+            app.UseStaticFiles();
             app.Use(async (context, next) =>
             {
                 logger.LogInformation("MW1: Incoming request");
@@ -60,3 +61,4 @@ namespace Old_Dot_Net_Version
         }
     }
 }
+ 
