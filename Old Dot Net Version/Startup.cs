@@ -35,7 +35,7 @@ namespace Old_Dot_Net_Version
             {
                 app.UseDeveloperExceptionPage();
             }
-            //app.UseDefaultFiles();
+            app.UseDefaultFiles();
             app.UseStaticFiles();
             app.Use(async (context, next) =>
             {
