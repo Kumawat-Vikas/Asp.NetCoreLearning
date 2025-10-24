@@ -36,36 +36,42 @@ namespace Old_Dot_Net_Version
                 app.UseDeveloperExceptionPage();
             }
 
-            DefaultFilesOptions defaultFilesOptions = new DefaultFilesOptions();
-            defaultFilesOptions.DefaultFileNames.Clear();
-            //defaultFilesOptions.DefaultFileNames.Add("foo.html");
-            //app.UseDefaultFiles(defaultFilesOptions);
+            //DefaultFilesOptions defaultFilesOptions = new DefaultFilesOptions();
+            //defaultFilesOptions.DefaultFileNames.Clear();
+            //defaultFilesOptions.DefaultFileNames.Add("default.html");
+            //////app.UseDefaultFiles(defaultFilesOptions);
             FileServerOptions fileServerOptions = new FileServerOptions();
             fileServerOptions.DefaultFilesOptions.DefaultFileNames.Clear();
             fileServerOptions.DefaultFilesOptions.DefaultFileNames.Add("foo.html");
+            //app.UseDefaultFiles();
+            //app.UseStaticFiles(); 
             app.UseFileServer(fileServerOptions);
-            app.UseStaticFiles();
 
-            app.Use(async (context, next) =>
-            {
-                logger.LogInformation("MW1: Incoming request");
-                await next();
-                logger.LogInformation("MW1: Outgoing response");
-            });
+            //app.Use(async (context, next) =>
+            //{
+            //    logger.LogInformation("MW1: Incoming request");
+            //    await next();
+            //    logger.LogInformation("MW1: Outgoing response");
+            //});
 
-            app.Use(async (context, next) =>
-            {
-                logger.LogInformation("MW2: Incoming request");
-                await next();
-                logger.LogInformation("MW2: Outgoing response");
+            //app.Use(async (context, next) =>
+            //{
+            //    logger.LogInformation("MW2: Incoming request");
+            //    await next();
+            //    logger.LogInformation("MW2: Outgoing response");
 
-            });                                    
-                                                   
-                                                   
-            app.Run(async (context) =>             
+            //});                                    
+
+
+            //app.Run(async (context) =>             
+            //{
+            //    await context.Response.WriteAsync("MW3: request handeled and response produced");
+            //    logger.LogInformation("MW3: request handeled and response produced");
+            //});
+
+            app.Run(async (context) =>
             {
-                await context.Response.WriteAsync("MW3: request handeled and response produced");
-                logger.LogInformation("MW3: request handeled and response produced");
+                await context.Response.WriteAsync("Hello world!");
             });
         }
     }
